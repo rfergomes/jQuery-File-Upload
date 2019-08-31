@@ -31,6 +31,8 @@
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
       crossorigin="anonymous"
     />
+    <!-- Doka Image Editor styles -->
+    <link rel="stylesheet" href="css/vendor/doka.min.css" />
     <!-- Generic page styles -->
     <style>
       body {
@@ -206,6 +208,19 @@
           id="_carbonads_js"
         ></script>
       </p>
+      <!-- Doka Image Editor info -->
+      <div class="well lead">
+        <a href="https://gumroad.com/a/455455859"
+          ><img
+            src="img/vendor/doka-logo.svg"
+            alt="Doka"
+            style="position:relative;top:-5px"
+        /></a>
+        <span
+          >The image editing functionality is provided by
+          <a href="https://gumroad.com/a/455455859">Doka</a>.</span
+        >
+      </div>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Demo Notes</h3>
@@ -371,6 +386,37 @@
       integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
       crossorigin="anonymous"
     ></script>
+    <!-- Doka Image Editor polyfills -->
+    <script>
+      [
+        {
+          supported: 'Promise' in window,
+          fill:
+            'https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js'
+        },
+        {
+          supported: 'fetch' in window,
+          fill: 'https://cdn.jsdelivr.net/npm/fetch-polyfill@0.8.2/fetch.min.js'
+        },
+        {
+          supported:
+            'CustomEvent' in window &&
+            'log10' in Math &&
+            'sign' in Math &&
+            'assign' in Object &&
+            'from' in Array &&
+            ['find', 'findIndex', 'includes'].reduce(function(previous, prop) {
+              return prop in Array.prototype ? previous : false;
+            }, true),
+          fill: 'js/vendor/doka.polyfill.min.js'
+        }
+      ].forEach(function(p) {
+        if (p.supported) return;
+        document.write('<script src="' + p.fill + '"><\/script>');
+      });
+    </script>
+    <!-- Doka Image Editor library -->
+    <script src="js/vendor/doka.min.js"></script>
     <!-- blueimp Gallery script -->
     <script src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
     <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
